@@ -1,23 +1,38 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+
+function Banner() {
+  return (
+    <div className="banner">
+      <h1 className="site-title">Saint Seiya</h1>
+    </div>
+  );
+}
+
+function Exhibit({ title, children }) {
+  return (
+    <div className="exhibit">
+      <h2 className="exhibit-title">{title}</h2>
+      <div className="exhibit-content">{children}</div>
+    </div>
+  );
+}
+
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Banner />
+      <Exhibit title="TV and OVA series">
+        <p>Saint Seiya</p>
+        <p>Saint Seiya: Hades</p>
+        <p>	Saint Seiya: The Lost Canvas</p>
+        <p>Saint Seiya Omega</p>
+        <p>Saint Seiya: Soul of Gold</p>
+        <p>	Saint Seiya: Saintia Shō</p>
+        <p>Knights of the Zodiac: Saint Seiya</p>
+      </Exhibit>
     </div>
   );
 }
