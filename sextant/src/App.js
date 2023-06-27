@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function Banner() {
@@ -19,8 +19,23 @@ function Exhibit({ title, children }) {
 }
 
 
-
 function App() {
+  const [ipV4Address, setIpV4Address] = useState('');
+  const [ipV6Address, setIpV6Address] = useState('');
+
+  useEffect(() => {
+    fetch('https://api.ipify.org/?format=json')
+      .then((response) => response.json())
+      .then((data) => setIpV4Address(data.ip))
+      .catch((error) => console.log(error));
+  }, 
+  fetch('https://api64.ipify.org?format=json')
+  .then((response) => response.json())
+  .then((data) => setIpV6Address(data.ip))
+  .catch((error) => console.log(error)),
+  []);
+
+
   return (
     <div className="App">
       <Banner />
@@ -32,6 +47,10 @@ function App() {
         <p>Saint Seiya: Soul of Gold</p>
         <p>	Saint Seiya: Saintia Shō</p>
         <p>Knights of the Zodiac: Saint Seiya</p>
+        <h4>Your Public IPv4 Address:</h4>
+        <p>{ipV4Address}</p>
+        <h4>Your Public IPv6 Address:</h4>
+        <p>{ipV6Address}</p>
       </Exhibit>
     </div>
   );
